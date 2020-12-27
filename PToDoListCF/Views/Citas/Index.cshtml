@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PToDoListCF.Models.Citas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Medico.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usersxd.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_Usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_Medico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tiempo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Medico.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usersxd.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_Usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_Medico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tiempo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CitasID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CitasID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CitasID })
+        </td>
+    </tr>
+}
+
+</table>
