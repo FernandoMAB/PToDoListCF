@@ -17,7 +17,8 @@ namespace PToDoListCF.Controllers
         // GET: Medicos
         public ActionResult Index()
         {
-            return View(db.Medico.ToList());
+            var medico = db.Medico.Include(m => m.Especialidad);
+            return View(medico.ToList());
         }
 
         // GET: Medicos/Details/5
@@ -38,6 +39,7 @@ namespace PToDoListCF.Controllers
         // GET: Medicos/Create
         public ActionResult Create()
         {
+            ViewBag.EspecialidadID = new SelectList(db.Especialidad, "EspecialidadID", "Nombre");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace PToDoListCF.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MedicoID,nombre,apellido,id_especialidad,email,contrasena,cedula")] Medico medico)
+        public ActionResult Create([Bind(Include = "MedicoID,EspecialidadID,nombre,apellido,id_especialidad,email,contrasena,cedula")] Medico medico)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace PToDoListCF.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.EspecialidadID = new SelectList(db.Especialidad, "EspecialidadID", "Nombre", medico.EspecialidadID);
             return View(medico);
         }
 
@@ -70,6 +73,7 @@ namespace PToDoListCF.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.EspecialidadID = new SelectList(db.Especialidad, "EspecialidadID", "Nombre", medico.EspecialidadID);
             return View(medico);
         }
 
@@ -78,7 +82,7 @@ namespace PToDoListCF.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MedicoID,nombre,apellido,id_especialidad,email,contrasena,cedula")] Medico medico)
+        public ActionResult Edit([Bind(Include = "MedicoID,EspecialidadID,nombre,apellido,id_especialidad,email,contrasena,cedula")] Medico medico)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace PToDoListCF.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.EspecialidadID = new SelectList(db.Especialidad, "EspecialidadID", "Nombre", medico.EspecialidadID);
             return View(medico);
         }
 

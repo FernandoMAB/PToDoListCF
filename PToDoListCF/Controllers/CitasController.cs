@@ -49,7 +49,7 @@ namespace PToDoListCF.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CitasID,MedicoID,UsersxdID,Nombre_Usuario,Nombre_Medico,Fecha,Tiempo")] Citas citas)
+        public ActionResult Create([Bind(Include = "CitasID,MedicoID,UsersxdID,Fecha,hora,pagado")] Citas citas)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace PToDoListCF.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CitasID,MedicoID,UsersxdID,Nombre_Usuario,Nombre_Medico,Fecha,Tiempo")] Citas citas)
+        public ActionResult Edit([Bind(Include = "CitasID,MedicoID,UsersxdID,Fecha,hora,pagado")] Citas citas)
         {
             if (ModelState.IsValid)
             {

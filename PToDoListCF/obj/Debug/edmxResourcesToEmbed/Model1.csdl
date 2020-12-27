@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PToDoListCF.Models.ToDoListModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cita">
+    <Key>
+      <PropertyRef Name="CitasID" />
+    </Key>
+    <Property Name="CitasID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MedicoID" Type="Int32" Nullable="false" />
+    <Property Name="UsersxdID" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Tiempo" Type="Time" Nullable="false" Precision="7" />
+    <NavigationProperty Name="Medico" Relationship="Self.FK_dbo_Citas_dbo_Medicos_MedicoID" FromRole="Citas" ToRole="Medicos" />
+    <NavigationProperty Name="Usersxd" Relationship="Self.FK_dbo_Citas_dbo_Usersxds_UsersxdID" FromRole="Citas" ToRole="Usersxds" />
+    <NavigationProperty Name="Pagos" Relationship="Self.FK_dbo_Pagos_dbo_Citas_CitasID_CitasID" FromRole="Citas" ToRole="Pagos" />
+  </EntityType>
+  <EntityType Name="Especialidad">
+    <Key>
+      <PropertyRef Name="EspecialidadID" />
+    </Key>
+    <Property Name="EspecialidadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Medicos" Relationship="Self.FK_dbo_Medicos_dbo_Especialidads_EspecialidadID" FromRole="Especialidads" ToRole="Medicos" />
+    <NavigationProperty Name="Procedimientoes" Relationship="Self.FK_dbo_Procedimientoes_dbo_Especialidads_EspecialidadID_EspecialidadID" FromRole="Especialidads" ToRole="Procedimientoes" />
+  </EntityType>
+  <EntityType Name="Medico">
+    <Key>
+      <PropertyRef Name="MedicoID" />
+    </Key>
+    <Property Name="MedicoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EspecialidadID" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="apellido" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="id_especialidad" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="contrasena" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="cedula" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Citas" Relationship="Self.FK_dbo_Citas_dbo_Medicos_MedicoID" FromRole="Medicos" ToRole="Citas" />
+    <NavigationProperty Name="Especialidad" Relationship="Self.FK_dbo_Medicos_dbo_Especialidads_EspecialidadID" FromRole="Medicos" ToRole="Especialidads" />
+  </EntityType>
+  <EntityType Name="Pago">
+    <Key>
+      <PropertyRef Name="PagosID" />
+    </Key>
+    <Property Name="PagosID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cita" Type="Int32" Nullable="false" />
+    <Property Name="id_procedimiento" Type="Int32" Nullable="false" />
+    <Property Name="valor_total" Type="Single" Nullable="false" />
+    <Property Name="CitasID_CitasID" Type="Int32" />
+    <Property Name="ProcedimientoID_ProcedimientoID" Type="Int32" />
+    <NavigationProperty Name="Cita" Relationship="Self.FK_dbo_Pagos_dbo_Citas_CitasID_CitasID" FromRole="Pagos" ToRole="Citas" />
+    <NavigationProperty Name="Procedimiento" Relationship="Self.FK_dbo_Pagos_dbo_Procedimientoes_ProcedimientoID_ProcedimientoID" FromRole="Pagos" ToRole="Procedimientoes" />
+  </EntityType>
+  <EntityType Name="Pregunta">
+    <Key>
+      <PropertyRef Name="PreguntasID" />
+    </Key>
+    <Property Name="PreguntasID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="pregunta1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="pregunta2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="pregunta3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UsersxdID_UsersxdID" Type="Int32" />
+    <NavigationProperty Name="Usersxd" Relationship="Self.FK_dbo_Preguntas_dbo_Usersxds_UsersxdID_UsersxdID" FromRole="Preguntas" ToRole="Usersxds" />
+  </EntityType>
+  <EntityType Name="Procedimiento">
+    <Key>
+      <PropertyRef Name="ProcedimientoID" />
+    </Key>
+    <Property Name="ProcedimientoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="precio" Type="Double" Nullable="false" />
+    <Property Name="id_especialidad" Type="Int32" Nullable="false" />
+    <Property Name="EspecialidadID_EspecialidadID" Type="Int32" />
+    <NavigationProperty Name="Especialidad" Relationship="Self.FK_dbo_Procedimientoes_dbo_Especialidads_EspecialidadID_EspecialidadID" FromRole="Procedimientoes" ToRole="Especialidads" />
+    <NavigationProperty Name="Pagos" Relationship="Self.FK_dbo_Pagos_dbo_Procedimientoes_ProcedimientoID_ProcedimientoID" FromRole="Procedimientoes" ToRole="Pagos" />
+  </EntityType>
+  <EntityType Name="Usersxd">
+    <Key>
+      <PropertyRef Name="UsersxdID" />
+    </Key>
+    <Property Name="UsersxdID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="edad" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="celular" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="cedula" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Citas" Relationship="Self.FK_dbo_Citas_dbo_Usersxds_UsersxdID" FromRole="Usersxds" ToRole="Citas" />
+    <NavigationProperty Name="Preguntas" Relationship="Self.FK_dbo_Preguntas_dbo_Usersxds_UsersxdID_UsersxdID" FromRole="Usersxds" ToRole="Preguntas" />
+  </EntityType>
+  <Association Name="FK_dbo_Citas_dbo_Medicos_MedicoID">
+    <End Role="Medicos" Type="Self.Medico" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Citas" Type="Self.Cita" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medicos">
+        <PropertyRef Name="MedicoID" />
+      </Principal>
+      <Dependent Role="Citas">
+        <PropertyRef Name="MedicoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Citas_dbo_Usersxds_UsersxdID">
+    <End Role="Usersxds" Type="Self.Usersxd" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Citas" Type="Self.Cita" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usersxds">
+        <PropertyRef Name="UsersxdID" />
+      </Principal>
+      <Dependent Role="Citas">
+        <PropertyRef Name="UsersxdID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Pagos_dbo_Citas_CitasID_CitasID">
+    <End Role="Citas" Type="Self.Cita" Multiplicity="0..1" />
+    <End Role="Pagos" Type="Self.Pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Citas">
+        <PropertyRef Name="CitasID" />
+      </Principal>
+      <Dependent Role="Pagos">
+        <PropertyRef Name="CitasID_CitasID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Medicos_dbo_Especialidads_EspecialidadID">
+    <End Role="Especialidads" Type="Self.Especialidad" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Medicos" Type="Self.Medico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Especialidads">
+        <PropertyRef Name="EspecialidadID" />
+      </Principal>
+      <Dependent Role="Medicos">
+        <PropertyRef Name="EspecialidadID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Procedimientoes_dbo_Especialidads_EspecialidadID_EspecialidadID">
+    <End Role="Especialidads" Type="Self.Especialidad" Multiplicity="0..1" />
+    <End Role="Procedimientoes" Type="Self.Procedimiento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Especialidads">
+        <PropertyRef Name="EspecialidadID" />
+      </Principal>
+      <Dependent Role="Procedimientoes">
+        <PropertyRef Name="EspecialidadID_EspecialidadID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Pagos_dbo_Procedimientoes_ProcedimientoID_ProcedimientoID">
+    <End Role="Procedimientoes" Type="Self.Procedimiento" Multiplicity="0..1" />
+    <End Role="Pagos" Type="Self.Pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Procedimientoes">
+        <PropertyRef Name="ProcedimientoID" />
+      </Principal>
+      <Dependent Role="Pagos">
+        <PropertyRef Name="ProcedimientoID_ProcedimientoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Preguntas_dbo_Usersxds_UsersxdID_UsersxdID">
+    <End Role="Usersxds" Type="Self.Usersxd" Multiplicity="0..1" />
+    <End Role="Preguntas" Type="Self.Pregunta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usersxds">
+        <PropertyRef Name="UsersxdID" />
+      </Principal>
+      <Dependent Role="Preguntas">
+        <PropertyRef Name="UsersxdID_UsersxdID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="Citas" EntityType="Self.Cita" />
+    <EntitySet Name="Especialidads" EntityType="Self.Especialidad" />
+    <EntitySet Name="Medicos" EntityType="Self.Medico" />
+    <EntitySet Name="Pagos" EntityType="Self.Pago" />
+    <EntitySet Name="Preguntas" EntityType="Self.Pregunta" />
+    <EntitySet Name="Procedimientoes" EntityType="Self.Procedimiento" />
+    <EntitySet Name="Usersxds" EntityType="Self.Usersxd" />
+    <AssociationSet Name="FK_dbo_Citas_dbo_Medicos_MedicoID" Association="Self.FK_dbo_Citas_dbo_Medicos_MedicoID">
+      <End Role="Medicos" EntitySet="Medicos" />
+      <End Role="Citas" EntitySet="Citas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Citas_dbo_Usersxds_UsersxdID" Association="Self.FK_dbo_Citas_dbo_Usersxds_UsersxdID">
+      <End Role="Usersxds" EntitySet="Usersxds" />
+      <End Role="Citas" EntitySet="Citas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Pagos_dbo_Citas_CitasID_CitasID" Association="Self.FK_dbo_Pagos_dbo_Citas_CitasID_CitasID">
+      <End Role="Citas" EntitySet="Citas" />
+      <End Role="Pagos" EntitySet="Pagos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Medicos_dbo_Especialidads_EspecialidadID" Association="Self.FK_dbo_Medicos_dbo_Especialidads_EspecialidadID">
+      <End Role="Especialidads" EntitySet="Especialidads" />
+      <End Role="Medicos" EntitySet="Medicos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Procedimientoes_dbo_Especialidads_EspecialidadID_EspecialidadID" Association="Self.FK_dbo_Procedimientoes_dbo_Especialidads_EspecialidadID_EspecialidadID">
+      <End Role="Especialidads" EntitySet="Especialidads" />
+      <End Role="Procedimientoes" EntitySet="Procedimientoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Pagos_dbo_Procedimientoes_ProcedimientoID_ProcedimientoID" Association="Self.FK_dbo_Pagos_dbo_Procedimientoes_ProcedimientoID_ProcedimientoID">
+      <End Role="Procedimientoes" EntitySet="Procedimientoes" />
+      <End Role="Pagos" EntitySet="Pagos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Preguntas_dbo_Usersxds_UsersxdID_UsersxdID" Association="Self.FK_dbo_Preguntas_dbo_Usersxds_UsersxdID_UsersxdID">
+      <End Role="Usersxds" EntitySet="Usersxds" />
+      <End Role="Preguntas" EntitySet="Preguntas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

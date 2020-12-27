@@ -55,6 +55,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -169,7 +171,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CitasController.cs" />
-    <Compile Include="Controllers\EspecialidadController.cs" />
+    <Compile Include="Controllers\EspecialidadsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedicosController.cs" />
@@ -248,21 +250,21 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Especialidad\Create.cshtml" />
-    <Content Include="Views\Especialidad\Delete.cshtml" />
-    <Content Include="Views\Especialidad\Details.cshtml" />
-    <Content Include="Views\Especialidad\Edit.cshtml" />
-    <Content Include="Views\Especialidad\Index.cshtml" />
-    <Content Include="Views\Medicos\Create.cshtml" />
-    <Content Include="Views\Medicos\Delete.cshtml" />
-    <Content Include="Views\Medicos\Details.cshtml" />
-    <Content Include="Views\Medicos\Edit.cshtml" />
-    <Content Include="Views\Medicos\Index.cshtml" />
     <Content Include="Views\Usersxds\Create.cshtml" />
     <Content Include="Views\Usersxds\Delete.cshtml" />
     <Content Include="Views\Usersxds\Details.cshtml" />
     <Content Include="Views\Usersxds\Edit.cshtml" />
     <Content Include="Views\Usersxds\Index.cshtml" />
+    <Content Include="Views\Medicos\Create.cshtml" />
+    <Content Include="Views\Medicos\Delete.cshtml" />
+    <Content Include="Views\Medicos\Details.cshtml" />
+    <Content Include="Views\Medicos\Edit.cshtml" />
+    <Content Include="Views\Medicos\Index.cshtml" />
+    <Content Include="Views\Especialidads\Create.cshtml" />
+    <Content Include="Views\Especialidads\Delete.cshtml" />
+    <Content Include="Views\Especialidads\Details.cshtml" />
+    <Content Include="Views\Especialidads\Edit.cshtml" />
+    <Content Include="Views\Especialidads\Index.cshtml" />
     <Content Include="Views\Citas\Create.cshtml" />
     <Content Include="Views\Citas\Delete.cshtml" />
     <Content Include="Views\Citas\Details.cshtml" />
@@ -284,6 +286,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

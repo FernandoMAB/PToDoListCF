@@ -9,5 +9,7 @@ namespace PToDoListCF.Models
     {
         public int EspecialidadID { get; set; }
         public string Nombre { get; set; }
+
+        public virtual ICollection<Medico> Medicos { get; set; }
     }
 }

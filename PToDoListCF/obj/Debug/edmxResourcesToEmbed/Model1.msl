@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PToDoListCFModelsToDoListModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="PToDoListCF.Models.ToDoListModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Citas">
+      <EntityTypeMapping TypeName="PToDoListCF.Models.ToDoListModel.Cita">
+        <MappingFragment StoreEntitySet="Citas">
+          <ScalarProperty Name="CitasID" ColumnName="CitasID" />
+          <ScalarProperty Name="MedicoID" ColumnName="MedicoID" />
+          <ScalarProperty Name="UsersxdID" ColumnName="UsersxdID" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Tiempo" ColumnName="Tiempo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Especialidads">
+      <EntityTypeMapping TypeName="PToDoListCF.Models.ToDoListModel.Especialidad">
+        <MappingFragment StoreEntitySet="Especialidads">
+          <ScalarProperty Name="EspecialidadID" ColumnName="EspecialidadID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Medicos">
+      <EntityTypeMapping TypeName="PToDoListCF.Models.ToDoListModel.Medico">
+        <MappingFragment StoreEntitySet="Medicos">
+          <ScalarProperty Name="MedicoID" ColumnName="MedicoID" />
+          <ScalarProperty Name="EspecialidadID" ColumnName="EspecialidadID" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="id_especialidad" ColumnName="id_especialidad" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pagos">
+      <EntityTypeMapping TypeName="PToDoListCF.Models.ToDoListModel.Pago">
+        <MappingFragment StoreEntitySet="Pagos">
+          <ScalarProperty Name="PagosID" ColumnName="PagosID" />
+          <ScalarProperty Name="id_cita" ColumnName="id_cita" />
+          <ScalarProperty Name="id_procedimiento" ColumnName="id_procedimiento" />
+          <ScalarProperty Name="valor_total" ColumnName="valor_total" />
+          <ScalarProperty Name="CitasID_CitasID" ColumnName="CitasID_CitasID" />
+          <ScalarProperty Name="ProcedimientoID_ProcedimientoID" ColumnName="ProcedimientoID_ProcedimientoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Preguntas">
+      <EntityTypeMapping TypeName="PToDoListCF.Models.ToDoListModel.Pregunta">
+        <MappingFragment StoreEntitySet="Preguntas">
+          <ScalarProperty Name="PreguntasID" ColumnName="PreguntasID" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="pregunta1" ColumnName="pregunta1" />
+          <ScalarProperty Name="pregunta2" ColumnName="pregunta2" />
+          <ScalarProperty Name="pregunta3" ColumnName="pregunta3" />
+          <ScalarProperty Name="UsersxdID_UsersxdID" ColumnName="UsersxdID_UsersxdID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Procedimientoes">
+      <EntityTypeMapping TypeName="PToDoListCF.Models.ToDoListModel.Procedimiento">
+        <MappingFragment StoreEntitySet="Procedimientoes">
+          <ScalarProperty Name="ProcedimientoID" ColumnName="ProcedimientoID" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="id_especialidad" ColumnName="id_especialidad" />
+          <ScalarProperty Name="EspecialidadID_EspecialidadID" ColumnName="EspecialidadID_EspecialidadID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usersxds">
+      <EntityTypeMapping TypeName="PToDoListCF.Models.ToDoListModel.Usersxd">
+        <MappingFragment StoreEntitySet="Usersxds">
+          <ScalarProperty Name="UsersxdID" ColumnName="UsersxdID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="edad" ColumnName="edad" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="celular" ColumnName="celular" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
